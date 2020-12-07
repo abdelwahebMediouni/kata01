@@ -5,22 +5,21 @@ import org.home.kata01.product.Product;
 import org.home.kata01.product.ProductsManager;
 import org.home.kata01.product.scanned.ScannedProductsKeeper;
 
-import javax.annotation.Nonnull;
 
 public class CheckOut {
     private final ProductsManager       productsManager;
     private final ScannedProductsKeeper scannedProductsKeeper;
 
-    private CheckOut(@Nonnull ProductsManager productsManager) {
+    private CheckOut( ProductsManager productsManager) {
         this.productsManager = productsManager;
         scannedProductsKeeper = new ScannedProductsKeeper();
     }
 
-    public void scan(@Nonnull String name) {
+    public void scan( String name) {
         scannedProductsKeeper.addScannedProduct(name);
     }
 
-    @Nonnull
+    
     public Price getPrice() {
         final Price price = Price.zero();
         scannedProductsKeeper.iterateProducts(
@@ -39,18 +38,18 @@ public class CheckOut {
             productsManager = new ProductsManager();
         }
 
-        @Nonnull
+        
         public static Builder aCheckOut() {
             return new Builder();
         }
 
-        @Nonnull
+        
         public CheckOut create() {
             return new CheckOut(productsManager);
         }
 
-        @Nonnull
-        public Builder withProduct(@Nonnull Product product) {
+        
+        public Builder withProduct( Product product) {
             productsManager.addProduct(product);
             return this;
         }
